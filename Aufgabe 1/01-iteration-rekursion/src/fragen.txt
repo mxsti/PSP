@@ -1,0 +1,5 @@
+Q: Wie verhalten sich die Laufzeiten der beiden Testmethoden iterativeSumUp und recursiveSumUp zueinander?
+A: Nach mehrfachem Ausführen der SumUpTest Klasse stellt man fest, dass die iterative gegenüber der rekursiven Lösung ca. 2 bis 2 1/2 mal schneller ist.
+
+Q: Modifizieren Sie die Konstante _quantity (Anzahl der aufzusummierenden Zahlen) im Testtreiber SumUpTest. Ab welcher Angabe erhalten Sie einen StackOverflowError?
+A: Ich erhalte einen StackOverflowError ab einer Quantity von ca. 5000.

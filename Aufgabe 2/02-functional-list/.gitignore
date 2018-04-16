@@ -1,0 +1,5 @@
+#IntelliJ IDEA managed files:
+/.idea/
+/*.iml
+#Maven managed directory:
+/target/
