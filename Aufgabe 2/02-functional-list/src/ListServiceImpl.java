@@ -4,11 +4,11 @@ public class ListServiceImpl implements ListService {
         return new List(value,list);
     }
 
-    public List append (final int value, final List list){
-        if (list.tail.equals(null)){
+    public List append (final int value, final List list) {
+        if (list == null){
             return new List(value,null);
         }
-        return append()
+        return new List(list.head, append(value, list.tail));
     }
 
 }
