@@ -139,7 +139,7 @@ class KontoSpec extends FlatSpec with Matchers {
 
   it should "Negativsaldo bestrafen" in {
     val kontoV1 = GiroKonto("Schmidt", 0.15) //GiroKonto mit Überziehungszinssatz 15% per annum
-    val kontoV2: GiroKonto = kontoV1.abheben(10000);
+    val kontoV2 = kontoV1.abheben(10000);
     {
       val result = kontoV2.verzinsen(360) //Kaufmännisch gelten 360 Tage als ein Jahr
       result.saldoCt shouldBe -11500

@@ -2,12 +2,12 @@ case class GiroKonto (override val name: String, override val zinssatzPA: Double
 
   override def einzahlen(betragCt: Long) : Konto = {
     require(betragCt > 0, "einzahlung kann nicht negativ oder 0 sein")
-    return GiroKonto(name,zinssatzPA,saldoCt + betragCt)
+    GiroKonto(name,zinssatzPA,saldoCt + betragCt)
   }
 
   override def abheben(betragCt: Long): Konto = {
     require(betragCt > 0, "abhebung kann nicht negativ oder 0 sein")
-    return GiroKonto(name,zinssatzPA,saldoCt - betragCt)
+    GiroKonto(name,zinssatzPA,saldoCt - betragCt)
   }
 
   override def verzinsen(anzahlTage: Int): Konto = {
@@ -16,15 +16,15 @@ case class GiroKonto (override val name: String, override val zinssatzPA: Double
       return GiroKonto(name,zinssatzPA,saldoCt)
     }
     val zinsSaldo = Math.round((saldoCt + (((zinssatzPA * saldoCt) / 360) * anzahlTage)))
-
-    return GiroKonto(name,zinssatzPA,zinsSaldo)
+    GiroKonto(name,zinssatzPA,zinsSaldo)
   }
 
   def ueberweisen(zielKonto: Konto, betragCt: Long): (GiroKonto,Konto) = {
     require(betragCt > 0)
+    val neuesGirokonto = GiroKonto(name, zinssatzPA, saldoCt - betragCt)
     if (zielKonto.isInstanceOf[GiroKonto]){
-      return (GiroKonto(name,zinssatzPA,saldoCt - betragCt), GiroKonto(zielKonto.name,zielKonto.zinssatzPA,zielKonto.saldoCt + betragCt))
+      (neuesGirokonto, GiroKonto(zielKonto.name,zielKonto.zinssatzPA,zielKonto.saldoCt + betragCt))
     }else
-    return (GiroKonto(name,zinssatzPA,saldoCt - betragCt), SparKonto(zielKonto.name,zielKonto.zinssatzPA,zielKonto.saldoCt + betragCt))
+      (neuesGirokonto, SparKonto(zielKonto.name,zielKonto.zinssatzPA,zielKonto.saldoCt + betragCt))
   }
 }
