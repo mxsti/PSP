@@ -9,7 +9,7 @@ import org.scalatest.{FlatSpec, Matchers}
 class ListServiceSpec extends FlatSpec with Matchers {
 
   /** An instance of the ListService, which has to be developed by the students. */
-  val testee: ListServiceImpl = new ListServiceImpl
+  val testee: ListService = new ListServiceImpl
 
   //Test the mergeSorted method:
 
