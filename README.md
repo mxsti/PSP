@@ -1,2 +1,3 @@
 # PSP
-Modul Programmiersprachen und -paradigmen [SS18]
+Lösungen für die Aufgaben des Moduls Programmiersprachen und -paradigmen [SS18]
+BHT Berlin
