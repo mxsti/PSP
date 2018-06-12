@@ -22,4 +22,5 @@ object PingPongMain extends App {
   system.actorOf(Thrower.props(reflector), "Thrower")
   Await.ready(system.whenTerminated, Duration(1, TimeUnit.MINUTES))
   println("ActorSystem finally shut down.")
+
 }

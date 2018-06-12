@@ -16,7 +16,8 @@ object Thrower {
 }
 
 /**An Actor which will send quantity Ping messages to the reflector awaiting corresponding Pong messages.*/
-class Thrower(reflector: ActorRef) extends Actor with ActorLogging {
+class Thrower(reflector: ActorRef) extends Actor with
+  ActorLogging {
 
   import Thrower._
   {
