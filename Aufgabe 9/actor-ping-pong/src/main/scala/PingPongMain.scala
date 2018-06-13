@@ -1,10 +1,6 @@
 import java.util.concurrent.TimeUnit
 
 import akka.actor.ActorSystem
-import akka.actor.Actor
-import akka.actor.ActorLogging
-import akka.actor.Props
-import akka.actor.ActorRef
 
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
@@ -17,9 +13,10 @@ import scala.concurrent.duration.Duration
  */
 object PingPongMain extends App {
   
-  val system = ActorSystem("PingPong")  
-  val reflector: ActorRef = system.actorOf(Reflector.props, "Reflector")
-  system.actorOf(Thrower.props(reflector), "Thrower")
+  val system = ActorSystem("PingPangPong")
+  system.actorOf(Thrower.props, "Thrower")
+  system.actorOf(Forwarder.props, "Forwarder")
+  system.actorOf(Reflector.props, "Reflector")
   Await.ready(system.whenTerminated, Duration(1, TimeUnit.MINUTES))
   println("ActorSystem finally shut down.")
 

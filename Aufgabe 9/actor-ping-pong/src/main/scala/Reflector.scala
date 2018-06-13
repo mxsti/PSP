@@ -6,7 +6,7 @@ object Reflector {
   def props: Props = Props(new Reflector)
 
   /**The message types an actor can understand are usually defined in his companion object as case classes.*/
-  case class Ping(id: Int)
+  case class Pang(id: Int)
 
 }
 
@@ -15,12 +15,13 @@ class Reflector extends Actor with ActorLogging {
 
   import Reflector._
   private var count = 0
+  val receiver: ActorRef = context.actorOf(Props[Thrower])
   
   def receive: Receive = {
-    case p: Ping => {
+    case p: Pang => {
       count += 1 
       log.debug(s"Received $p as #$count.")
-      sender ! Thrower.Pong(p.id)
+      receiver ! Thrower.Pong(p.id)
     }
   }
   

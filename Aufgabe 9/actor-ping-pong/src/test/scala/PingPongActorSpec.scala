@@ -16,17 +16,17 @@ class PingPongActorSpec(_system: ActorSystem) extends TestKit(_system) with Impl
   "A Reflector actor" must {
     "send back a Pong with the same id on a Ping" in {
       val reflectorActor = system.actorOf(Reflector.props)
-      reflectorActor ! Reflector.Ping(99)
+      reflectorActor ! Reflector.Pang(99)
       expectMsg(Thrower.Pong(99))
     }
   }
 
   "A Thrower actor" must {
     "send 100 indexed Ping messages to passed actor" in {
-      val throwerActor = system.actorOf(Thrower.props(self))
+      val throwerActor = system.actorOf(Thrower.props)
       //throwerActor ! PongActor.PongMessage("pong")
       for(i <- 1 to 100){
-        expectMsg(Reflector.Ping(i))
+        expectMsg(Reflector.Pang(i))
       }
     }
   }
