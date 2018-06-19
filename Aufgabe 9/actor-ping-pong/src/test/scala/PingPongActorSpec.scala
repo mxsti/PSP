@@ -1,4 +1,4 @@
-import akka.actor.ActorSystem
+/*import akka.actor.ActorSystem
 import akka.testkit.{ TestKit, ImplicitSender }
 import org.scalatest.WordSpecLike
 import org.scalatest.Matchers
@@ -32,3 +32,4 @@ class PingPongActorSpec(_system: ActorSystem) extends TestKit(_system) with Impl
   }
 
 }
+*/
