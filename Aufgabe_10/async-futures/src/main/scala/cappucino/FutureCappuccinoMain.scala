@@ -59,7 +59,7 @@ object FutureCappuccinoMain extends /*A Scala application */ App {
     result
   }
 
-  val result = Await.result(prepareCappuccino(), 20.seconds)
+  val result = Await.result(prepareCappuccino(), 200.seconds)
   println(s"Whole process produced $result")
 
 }

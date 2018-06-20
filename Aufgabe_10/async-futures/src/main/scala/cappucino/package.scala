@@ -26,11 +26,12 @@ package object cappucino {
     def time = System.currentTimeMillis - startMillis + " ms"
     println(s"$time: Start $actionName...")
     import scala.concurrent.blocking
-    blocking{ //Markiert diesen Codeteil als potentiell zeitverbrauchend. Erlaubt Thread-Allokation bei Bedarf.
-      Thread sleep millis //Random.nextInt(10000)
-    }
+    //blocking{ //Markiert diesen Codeteil als potentiell zeitverbrauchend. Erlaubt Thread-Allokation bei Bedarf.
+      //Thread sleep millis //Random.nextInt(10000)
+    //}
+    scala.io.StdIn.readLine(s"$time: Enter to Finish $actionName\n")
     val result = expression
-    println(s"$time: Finished $actionName gave $result")
+    println(s"$time: Finished $actionName gave $result\n")
     result
   }
 
