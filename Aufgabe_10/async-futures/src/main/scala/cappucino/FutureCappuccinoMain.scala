@@ -53,9 +53,11 @@ object FutureCappuccinoMain extends /*A Scala application */ App {
     val result = for {
       ground <- groundCoffeeFuture
       water <- heatedWaterFuture
-      foam <- frothedMilkFuture
+      //foam <- frothedMilkFuture
+      //start brewing before foam is ready, no dependency
       espresso <- brew(ground, water)
-    } yield SequentialCappuccinoMain.combine(espresso, foam)
+      foam <- frothedMilkFuture
+    } yield SequentialCappuccinoMain.combine(espresso,foam)
     result
   }
 
