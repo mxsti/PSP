@@ -2,7 +2,6 @@ package combine
 
 import org.scalatest._
 import akka.actor.ActorSystem
-import cappucino.FutureCombineImpl
 
 import scala.concurrent.Future
 import scala.concurrent.duration._
