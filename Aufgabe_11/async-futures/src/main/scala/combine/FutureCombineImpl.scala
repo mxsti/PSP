@@ -19,11 +19,12 @@ class FutureCombineImpl extends FutureCombine {
     * versagt auch die gelieferte Future mit einer Exception. */
   override def allOf[T](futures: Seq[Future[T]]): Future[Seq[T]] = {
     val promise: Promise[T] = Promise()
-    val emptySeq = Seq[T]()
-    //val test: Future[Seq[T]] = Future(emptySeq)
-    futures.foldLeft(emptySeq) { (seq: Seq[T], currentFuture: Future[T]) =>
-      ???
+    val emptySeq: Seq[T] = Seq()
+    val futureSeq: Future[Seq[T]] = Future(emptySeq)
+    futures.foldLeft(futureSeq) { (seq,currentFuture) =>
+      for (ergebnis <- currentFuture) ergebnis +: seq
     }
+    promise.completeWith(futureSeq)
   }
 
 }
