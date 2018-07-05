@@ -18,13 +18,17 @@ class FutureCombineImpl extends FutureCombine {
     * Wenn eine Future aus {futures} versagt oder nicht innerhalb des Timeout-Zeitraums terminiert,
     * versagt auch die gelieferte Future mit einer Exception. */
   override def allOf[T](futures: Seq[Future[T]]): Future[Seq[T]] = {
-    val promise: Promise[T] = Promise()
-    val emptySeq: Seq[T] = Seq()
-    val futureSeq: Future[Seq[T]] = Future(emptySeq)
-    futures.foldLeft(futureSeq) { (seq,currentFuture) =>
-      for (ergebnis <- currentFuture) ergebnis +: seq
+    val promise: Promise[Seq[T]] = Promise()
+    val startFuture: Future[Seq[T]] = Future(Seq())
+
+    val resultFuture: Future[Seq[T]] = futures.foldLeft(startFuture) { (futureSeq, currentFuture) =>
+      for {
+          seq <- futureSeq
+          result <- currentFuture
+        } yield seq :+ result
     }
-    promise.completeWith(futureSeq)
+    promise.completeWith(resultFuture)
+    resultFuture
   }
 
 }
